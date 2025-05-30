@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YumiTech - Quando serve sapere non c'è tempo da perdere</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'pear': '#b6d94c',
+                        'pear-light': '#d4e99a',
+                        'pear-dark': '#8ca832',
+                        'purple': '#694cb6', // Colore complementare
+                        'purple-light': '#9a7de9',
+                        'purple-dark': '#4a2e94',
+                    }
+                },
+                fontFamily: {
+                    'sans': ['Poppins', 'sans-serif'],
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #b6d94c 0%, #8ca832 100%);
+        }
+        
+        .gradient-text {
+    background: linear-gradient(135deg, #694cb6 0%, #9a7de9 100%);
+    -webkit-background-clip: text;
+    background-clip: text; /* Aggiungi questa linea */
+    -webkit-text-fill-color: transparent;
+    color: transparent; /* Aggiungi questa linea per compatibilità */
+        }
+        
+        .hero-pattern {
+            background-color: #f9faf5;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23b6d94c' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(182, 217, 76, 0.4);
+        }
+        
+        .modal {
+            transition: opacity 0.25s ease;
+        }
+        
+        .modal-container {
+            transition: all 0.3s ease-out;
+        }
+        
+        .modal-active .modal-container {
+            transform: scale(1);
+        }
+        
+        .modal-active .modal-bg {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md fixed w-full z-50">
+        <div class="container mx-auto px-4 md:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-2">
+                    <img src="/Users/francescomasini/Desktop/yumitech/logo yumitech tondo.png" alt="Logo YumiTech" class="h-10 w-10">
+                    <span class="text-2xl font-bold text-pear">Yumitech</span></span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="#home" class="text-gray-700 hover:text-pear transition-colors">Home</a>
+                    <a href="#features" class="text-gray-700 hover:text-pear transition-colors">Caratteristiche</a>
+                    <a href="#app" class="text-gray-700 hover:text-pear transition-colors">App</a>
+                    <a href="#about" class="text-gray-700 hover:text-pear transition-colors">Chi siamo</a>
+                    <a href="#contact" class="text-gray-700 hover:text-pear transition-colors">Contatti</a>
+                    <a href="#futuri-prodotti" class="text-gray-700 hover:text-pear transition-colors">Prodotti futuri</a>
+                    <a href="#impatto-ambientale" class="text-gray-700 hover:text-pear transition-colors">Impatto Ambientale</a>
+                </div>                       
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile menu -->
+            <div id="mobileMenu" class="md:hidden hidden pb-4">
+                <a href="#home" class="block py-2 text-gray-700 hover:text-pear">Home</a>
+                <a href="#features" class="block py-2 text-gray-700 hover:text-pear">Caratteristiche</a>
+                <a href="#app" class="block py-2 text-gray-700 hover:text-pear">App</a>
+                <a href="#about" class="block py-2 text-gray-700 hover:text-pear">Chi siamo</a>
+                <a href="#contact" class="block py-2 text-gray-700 hover:text-pear">Contatti</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-pattern pt-32 pb-20">
+        <div class="container mx-auto px-4 md:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-800 leading-tight">
+                        Quando serve sapere non c'è<span class="gradient-text"> tempo da perdere</span>
+                    </h1>
+                    <p class="mt-6 text-lg text-gray-600">
+                        Il business di YUMITECH  mira a fornire dati ed informazioni in tempo reale raccolti e verificati dalla nostra AI tramite prodotti digitali.
+Il suo valore distintivo risiede nella risoluzione dei problemi legati alla mancanza di reperibilità e l'errata dichiarazione delle informazioni online.
+                    </p>
+                    <div class="mt-8 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="https://sites.google.com/view/yumitechsrl/home-page" 
+                           target="_blank" 
+                           class="px-8 py-3 rounded-full bg-pear text-white font-medium hover:bg-pear-dark transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-1 inline-block text-center">
+                            Scopri di più
+                        </a>
+                        
+                        <button onclick="showBusinessPlanModal()" 
+                                class="px-8 py-3 rounded-full border-2 border-purple text-purple font-medium hover:bg-purple hover:text-white transition-colors">
+                            Business Plan Completo
+                        </button>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center">
+                    <div class="relative w-full max-w-md">
+                        <div class="absolute -top-4 -left-4 w-64 h-64 bg-pear-light rounded-full mix-blend-multiply filter blur-2xl opacity-30 animate-blob"></div>
+                        <div class="absolute -bottom-8 -right-4 w-64 h-64 bg-purple-light rounded-full mix-blend-multiply filter blur-2xl opacity-30 animate-blob animation-delay-2000"></div>
+                        <div class="relative">
+                            <svg class="w-full" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <linearGradient id="phoneGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#b6d94c" />
+                                        <stop offset="100%" stop-color="#8ca832" />
+                                    </linearGradient>
+                                </defs>
+                                <!-- Phone frame -->
+                                <rect x="120" y="40" width="160" height="320" rx="20" fill="#333" />
+                                <rect x="130" y="60" width="140" height="280" rx="5" fill="url(#phoneGradient)" />
+                                
+                                <!-- App interface -->
+                                <rect x="140" y="80" width="120" height="240" rx="3" fill="white" />
+                                
+                                <!-- App content -->
+                                <rect x="150" y="100" width="100" height="15" rx="2" fill="#694cb6" opacity="0.8" />
+                                <rect x="150" y="125" width="100" height="40" rx="5" fill="#f0f0f0" />
+                                <rect x="160" y="135" width="80" height="8" rx="2" fill="#b6d94c" />
+                                <rect x="160" y="150" width="60" height="5" rx="1" fill="#999" />
+                                
+                                <rect x="150" y="175" width="100" height="40" rx="5" fill="#f0f0f0" />
+                                <rect x="160" y="185" width="80" height="8" rx="2" fill="#b6d94c" />
+                                <rect x="160" y="200" width="60" height="5" rx="1" fill="#999" />
+                                
+                                <rect x="150" y="225" width="100" height="40" rx="5" fill="#f0f0f0" />
+                                <rect x="160" y="235" width="80" height="8" rx="2" fill="#b6d94c" />
+                                <rect x="160" y="250" width="60" height="5" rx="1" fill="#999" />
+                                
+                                <!-- Bottom nav -->
+                                <rect x="140" y="330" width="120" height="20" rx="3" fill="#f8f8f8" />
+                                <circle cx="170" cy="340" r="5" fill="#b6d94c" />
+                                <circle cx="200" cy="340" r="5" fill="#ddd" />
+                                <circle cx="230" cy="340" r="5" fill="#ddd" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-white">
+        <div class="container mx-auto px-4 md:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Caratteristiche Principali</h2>
+                <p class="mt-4 text-xl text-gray-600 max-w-3xl mx-auto">
+                    Yumitech grazie al proprio core business e i propri prodotti offre soluzioni innovative per connettere servizi e clienti in modo efficiente e in tempo reale.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="feature-card bg-white p-6 rounded-xl shadow-lg border border-gray-100 transition-all duration-300">
+                    <div class="w-14 h-14 rounded-full gradient-bg flex items-center justify-center mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Informazioni in tempo reale</h3>
+                    <p class="text-gray-600">
+                        Accedi a dati aggiornati istantaneamente sulla disponibilità dei servizi, permettendo decisioni rapide e informate.
+                    </p>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="feature-card bg-white p-6 rounded-xl shadow-lg border border-gray-100 transition-all duration-300">
+                    <div class="w-14 h-14 rounded-full gradient-bg flex items-center justify-center mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Gestione magazzino innovativa</h3>
+                    <p class="text-gray-600">
+                        Il nostro sistema acquisisce e gestisce stock di prenotazioni garantendo disponibilità costante e ottimizzando la gestione delle risorse, garantendo la disponibilità in tempo reale.
+                    </p>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="feature-card bg-white p-6 rounded-xl shadow-lg border border-gray-100 transition-all duration-300">
+                    <div class="w-14 h-14 rounded-full gradient-bg flex items-center justify-center mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Analisi dati avanzata</h3>
+                    <p class="text-gray-600">
+                        Forniamo insight preziosi attraverso l'analisi dei dati raccolti, permettendo strategie di business più efficaci. Inoltre lo stock dei dati prevede la conservazione di informazioni di alta qualità costituite da dati grezzi (per permettere l'analisi con modelli personalizzati), dati analizzati dalle nostre AI addestrate per generare previsioni su trend futuri e ottimizzaione delle nostre capagne pubblicitarie
+                    </p>
+                </div>
+                
+                <!-- Feature 4 -->
+                <div class="feature-card bg-white p-6 rounded-xl shadow-lg border border-gray-100 transition-all duration-300">
+                    <div class="w-14 h-14 rounded-full gradient-bg flex items-center justify-center mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Connessione diretta</h3>
+                    <p class="text-gray-600">
+                        Mettiamo in contatto diretto chi offre un servizio con chi lo cerca tramite un filtro ricerca potenziato dalla nostra AI, eliminando intermediari, riducendo stress, tempi di attesa e imprevisti dell'ultimo minuto.
+                    </p>
+                </div>
+                
+                <!-- Feature 5 -->
+                <div class="feature-card bg-white p-6 rounded-xl shadow-lg border border-gray-100 transition-all duration-300">
+                    <div class="w-14 h-14 rounded-full gradient-bg flex items-center justify-center mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Intelligenza Artificiale</h3>
+                    <p class="text-gray-600">
+                        Algoritmi avanzati di AI per varie analisi dati, ottimizzazione dell'abbinamento tra domanda e offerta e generativa per accompagnare chi offre il servizio nelle decisioni di descrizioni prodotti, prezzi, orari in base al mercato migliorando l'esperienza di tutti gli utenti.
+                    </p>
+                </div>
+                
+                <!-- Feature 6 -->
+                <div class="feature-card bg-white p-6 rounded-xl shadow-lg border border-gray-100 transition-all duration-300">
+                    <div class="w-14 h-14 rounded-full gradient-bg flex items-center justify-center mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">Abbonamenti flessibili</h3>
+                    <p class="text-gray-600">
+                        Offriamo piani di abbonamento per i negozi e abbonamenti facoltativi ai clienti che fanno accedere alla possibilità dei servizi a domicilio, automatizzazione della prenotazione degli impegni, un'esclusiva raccolta punti convertibili in sconti in app su qualsiasi altro servizio e priorità nell'accesso agli stock in magazzino, prenotazioni dell'ultimo minuto. Offriamo campagne pubblicitarie a grossisti per indiiduare esattamente il negozio più consono ai loro prodotti grazie all'analisi dati e trend così da migliorare la domanda dei clienti a quel negozio e l'afflusso di clienti al grossista.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- App Showcase Section -->
+    <section id="app" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4 md:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Fast In Time - prodotto lancio</h2>
+                <p class="mt-4 text-xl text-gray-600 max-w-3xl mx-auto">
+                    Scopri come la nostra applicazione rivoluzionerà il modo di connettere servizi e clienti
+                </p>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-10 lg:mb-0">
+                    <div class="relative mx-auto max-w-xs">
+                        <!-- Phone mockup -->
+                        <svg class="w-full" viewBox="0 0 320 640" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="appGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#b6d94c" />
+                                    <stop offset="100%" stop-color="#8ca832" />
+                                </linearGradient>
+                            </defs>
+                            <!-- Phone frame -->
+                            <rect x="20" y="20" width="280" height="600" rx="30" fill="#333" />
+                            <rect x="30" y="60" width="260" height="520" rx="5" fill="white" />
+                            
+                            <!-- Status bar -->
+                            <rect x="30" y="60" width="260" height="40" rx="5" fill="url(#appGradient)" />
+                            <text x="50" y="85" font-family="Arial" font-size="14" fill="white">Fast In Time</text>
+                            <text x="240" y="85" font-family="Arial" font-size="14" fill="white">12:30</text>
+                            
+                            <!-- App content -->
+                            <rect x="45" y="120" width="230" height="60" rx="8" fill="#f5f5f5" />
+                            <text x="60" y="145" font-family="Arial" font-size="14" font-weight="bold" fill="#333">Trova servizi vicino a te</text>
+                            <text x="60" y="165" font-family="Arial" font-size="12" fill="#666">Cerca per categoria o nome</text>
+                            
+                            <!-- Service cards -->
+                            
+                            <image 
+  x="45" 
+  y="200" 
+  width="230" 
+  height="80" 
+  href="/Users/francescomasini/Desktop/yumitech/logo per fit .jpeg" 
+  preserveAspectRatio="xMidYMid meet"
+/>
+                            <rect x="45" y="290" width="230" height="80" rx="8" fill="#f5f5f5" />
+                            <circle cx="80" cy="330" r="20" fill="#b6d94c" />
+                            <text x="110" y="320" font-family="Arial" font-size="14" font-weight="bold" fill="#333">Parrucchiere Style</text>
+                            <text x="110" y="340" font-family="Arial" font-size="12" fill="#666">Disponibile ora • 650 mt</text>
+                            
+                            <rect x="45" y="380" width="230" height="80" rx="8" fill="#f5f5f5" />
+                            <circle cx="80" cy="420" r="20" fill="#694cb6" />
+                            <text x="110" y="410" font-family="Arial" font-size="14" font-weight="bold" fill="#333">Centro Benessere Spa</text>
+                            <text x="110" y="430" font-family="Arial" font-size="12" fill="#666">Disponibile domani • 3.5 km</text>
+                            
+                            <!-- Bottom navigation -->
+                            <rect x="30" y="540" width="260" height="40" rx="5" fill="#f8f8f8" />
+                            <circle cx="70" cy="560" r="15" fill="url(#appGradient)" />
+                            <circle cx="160" cy="560" r="15" fill="#ddd" />
+                            <circle cx="250" cy="560" r="15" fill="#ddd" />
+                        </svg>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2 lg:pl-16">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">Funzionalità principali</h3>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <div class="w-8 h-8 rounded-full gradient-bg flex items-center justify-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-semibold text-gray-800">Ricerca intelligente</h4>
+                                <p class="mt-1 text-gray-600">Trova rapidamente i servizi di cui hai bisogno con filtri avanzati e suggerimenti personalizzati.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <div class="w-8 h-8 rounded-full gradient-bg flex items-center justify-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-semibold text-gray-800">Disponibilità in tempo reale</h4>
+                                <p class="mt-1 text-gray-600">Visualizza istantaneamente quali servizi sono disponibili ora e quali lo saranno più tardi.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <div class="w-8 h-8 rounded-full gradient-bg flex items-center justify-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-semibold text-gray-800">Prenotazioni immediate</h4>
+                                <p class="mt-1 text-gray-600">Prenota direttamente dall'app senza chiamate o attese, con conferma istantanea.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <div class="w-8 h-8 rounded-full gradient-bg flex items-center justify-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg font-semibold text-gray-800">Recensioni verificate</h4>
+                                <p class="mt-1 text-gray-600">Leggi e lascia recensioni autentiche per aiutare altri utenti a scegliere il servizio migliore.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </p>
+                <div class="mt-8 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="https://sites.google.com/view/fastintime/home-page" 
+                       target="_blank" 
+                       class="px-8 py-3 rounded-full bg-pear text-white font-medium hover:bg-pear-dark transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-1 inline-block text-center">
+                        Approfondisci
+                    </a>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="container mx-auto px-4 md:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Chi Siamo</h2>
+                <p class="mt-4 text-xl text-gray-600 max-w-3xl mx-auto">
+                    YumiTech è una startup innovativa che rivoluziona il modo in cui i servizi incontrano i clienti
+                </p>
+            </div>
+            
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <div class="relative">
+                        <div class="absolute -top-4 -left-4 w-72 h-72 bg-pear-light rounded-full mix-blend-multiply filter blur-xl opacity-30"></div>
+                        <div class="absolute -bottom-4 -right-4 w-72 h-72 bg-purple-light rounded-full mix-blend-multiply filter blur-xl opacity-30"></div>
+                        <div class="relative p-6 bg-white rounded-xl shadow-xl border border-gray-100">
+                            <svg class="w-full" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                                <image href="/Users/francescomasini/Desktop/yumitech/soci prova.jpg" x="0" y="0" width="400" height="300" />
+                              </svg>
+                                <defs>
+                                    <linearGradient id="teamGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#b6d94c" />
+                                        <stop offset="100%" stop-color="#8ca832" />
+                                    </linearGradient>
+                                </defs>
+                                
+                                <!-- Background -->
+                                <rect x="0" y="0" width="400" height="300" fill="#f8f8f8" rx="10" />
+                                
+                                <!-- Office elements -->
+                                <rect x="20" y="20" width="360" height="180" fill="white" rx="5" />
+                                <rect x="40" y="40" width="100" height="60" fill="#f0f0f0" rx="3" />
+                                <rect x="160" y="40" width="100" height="60" fill="#f0f0f0" rx="3" />
+                                <rect x="280" y="40" width="60" height="140" fill="#f0f0f0" rx="3" />
+                                <rect x="40" y="120" width="220" height="60" fill="#f0f0f0" rx="3" />
+                                
+                                <!-- People -->
+                                <circle cx="90" cy="220" r="25" fill="url(#teamGradient)" />
+                                <circle cx="170" cy="220" r="25" fill="url(#teamGradient)" />
+                                <circle cx="250" cy="220" r="25" fill="url(#teamGradient)" />
+                                <circle cx="330" cy="220" r="25" fill="url(#teamGradient)" />
+                                
+                                <!-- Text -->
+                                <text x="200" y="270" font-family="Arial" font-size="16" fill="#333" text-anchor="middle">Il nostro team di innovatori</text>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2 md:pl-16">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6">La nostra missione</h3>
+                    <p class="text-gray-600 mb-6">
+                        YumiTech nasce con l'obiettivo di rivoluzionare il modo in cui i servizi e i clienti si incontrano. La nostra missione è creare un ecosistema digitale che ottimizzi l'incontro tra domanda e offerta, garantendo informazioni in tempo reale e massima efficienza.
+                    </p>
+                    <p class="text-gray-600 mb-6">
+                        Grazie al nostro innovativo sistema di gestione del magazzino online e all'implementazione di algoritmi di intelligenza artificiale, siamo in grado di offrire un servizio unico che garantisce la disponibilità costante delle prenotazioni.
+                    </p>
+                    <p class="text-gray-600">
+                        Il nostro team è composto da esperti in tecnologia, analisi dati e sviluppo software, tutti uniti dalla passione per l'innovazione e dalla volontà di creare soluzioni che migliorino la vita quotidiana di aziende e consumatori.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section><!-- Sezione Prodotti Futuri -->
+    <section id="futuri-prodotti" class="bg-white py-20">
+      <div class="container mx-auto px-4 md:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold gradient-text mb-6">Prodotti Futuri</h2>
+        <p class="text-gray-600 text-lg max-w-3xl mx-auto mb-10">
+          YumiTech guarda sempre avanti. Ecco un'anteprima delle tecnologie e dei servizi futuri esempio dell'incredibile scalabilità aziendale.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="p-6 bg-gray-50 rounded-lg shadow hover:shadow-lg transition feature-card">
+            <i class="fas fa-rocket text-pear text-4xl mb-4"></i>
+            <h3 class="text-xl font-semibold text-gray-800 mb-2">Implementazione prodotti</h3>
+            <p class="text-gray-600">Inserire, oltre i servizi, anche la ricerca dei prodotti tramite tecnologie software e hardware avanzate.</p>
+          </div>
+          <div class="p-6 bg-gray-50 rounded-lg shadow hover:shadow-lg transition feature-card">
+            <i class="fas fa-mobile-alt text-pear text-4xl mb-4"></i>
+            <h3 class="text-xl font-semibold text-gray-800 mb-2"> Nuove applicazioni</h3>
+            <p class="text-gray-600">Yumitech non si ferma ai soli servizi quotidiani bensì punta a espandere il proprio business tramite My Park, un'applicazione che tramite l'uso di telecamere e AI riesce a dare la disponibilità in tempo relae dei parcheggi in città con aggiornamenti in tempo reale nel caso il parcheggio venga preso e trovare la soluzione migliore, estremamente legabile a Fast in Time. Altre applicazioni che permettono....</p>
+          </div>
+          <div class="p-6 bg-gray-50 rounded-lg shadow hover:shadow-lg transition feature-card">
+            <i class="fas fa-users text-pear text-4xl mb-4"></i>
+            <h3 class="text-xl font-semibold text-gray-800 mb-2">Community integrata</h3>
+            <p class="text-gray-600">Forum, feedback e collaborazione tra utenti professionisti.</p>
+          </div>
+          <div class="p-6 bg-gray-50 rounded-lg shadow hover:shadow-lg transition feature-card">
+            <i class="fas fa-chart-line text-pear text-4xl mb-4"></i>
+            <h3 class="text-xl font-semibold text-gray-800 mb-2">Dati</h3>
+            <p class="text-gray-600">Grazie ad i dati raccolti possiamo implementare la prima consulenza con dati in tempo reale di Italia.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sezione Impatto Ambientale -->
+<section id="impatto-ambientale" class="bg-green-50 py-20">
+    <div class="container mx-auto px-4 md:px-6 lg:px-8 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold text-pear-dark mb-6">Il Nostro Impatto Ambientale</h2>
+      <p class="text-gray-700 text-lg max-w-3xl mx-auto mb-10">
+        YumiTech è impegnata a ridurre l’impatto ambientale attraverso pratiche sostenibili, tecnologie e impegno etico.
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="p-6 bg-white rounded-lg shadow hover:shadow-lg transition feature-card">
+          <i class="fas fa-leaf text-pear text-4xl mb-4"></i>
+          <h3 class="text-xl font-semibold text-gray-800 mb-2">Rispetto dell'ambiente</h3>
+          <p class="text-gray-600">Puntiamo a lavorare tramite processi a basso impatto energetico prediligendo partner e tecnologie che operano con fonti di energia rinnovabile o riciclo di elettricità.</p>
+        </div>
+        <div class="p-6 bg-white rounded-lg shadow hover:shadow-lg transition feature-card">
+          <i class="fas fa-recycle text-pear text-4xl mb-4"></i>
+          <h3 class="text-xl font-semibold text-gray-800 mb-2">Riduazione dell'inquinamento</h3>
+          <p class="text-gray-600">Una mission fondamentale di Yumitech è ridurre l'inuqinamento in quando crediamo fortemente in una natura pulita e ripettata. Grazie ai nostri prodotti si riduce l'utilizzo di carta e plastica generata dagli scontrini, riduzione dell'inquinamento in quanto vengono ridotti i viaggi a vuoto, tramite l'app per l'individuazione della rivendita di prodotti vogliamo ridurre l'inquinamneto generato dal consumismo e tramite l'Applicazione per i rifiuti divulgare la giusta raccolta differenziata.</p>
+        </div>
+        <div class="p-6 bg-white rounded-lg shadow hover:shadow-lg transition feature-card">
+          <i class="fas fa-hand-holding-heart text-pear text-4xl mb-4"></i>
+          <h3 class="text-xl font-semibold text-gray-800 mb-2">Progetti Sociali</h3>
+          <p class="text-gray-600">Il nostro target comprende per la maggior parte persone con esigenze particolari e che per costrizione di salute o scelta etica devono fare rinuncie o perdere tempo a chiamare e spiegare la loro situazione personale provocandoli stress e ansie (disabili, intolleranti alimentari, veg, chi ricerca cruelty-free). Vogliamo rendere i servizi accessibili a tutti oltre che eliminare gli imprevisti all'ultimo minuto ccomprendendo professionisti, fuori-sede, turisti.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4 md:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Contattaci</h2>
+                <p class="mt-4 text-xl text-gray-600 max-w-3xl mx-auto">
+                    Hai domande o vuoi saperne di più? Siamo qui per aiutarti
+                </p>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row">
+                <div class="lg:w-1/2 mb-10 lg:mb-0">
+                    <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6">Inviaci un messaggio</h3>
+                        
+                        <form id="contactForm" class="space-y-6" action="https://formspree.io/f/mgvkjgzl" method="POST">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nome completo</label>
+                                <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pear focus:border-pear">
+                            </div>
+                            
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                                <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pear focus:border-pear">
+                            </div>
+                            
+                            <div>
+                                <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Oggetto</label>
+                                <input type="text" id="subject" name="subject" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pear focus:border-pear">
+                            </div>
+                            
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Messaggio</label>
+                                <textarea id="message" name="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pear focus:border-pear"></textarea>
+                            </div>
+                            
+                            <div>
+                                <button type="submit" class="w-full px-6 py-3 bg-pear text-white font-medium rounded-lg hover:bg-pear-dark transition-colors">
+                                    Invia messaggio
+                                </button>
+                            </div>
+                        </form>
+                        
+                        <div class="mt-4 text-center text-sm text-gray-500">
+                            <p> Per essere contattati più facilmente lasciare i vostri recapiti</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2 lg:pl-16">
+                    <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100 mb-8">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6">Informazioni di contatto</h3>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0">
+                                    <div class="w-10 h-10 rounded-full gradient-bg flex items-center justify-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-semibold text-gray-800">Telefono</h4>
+                                    <p class="mt-1 text-gray-600">+39 3270747862</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0">
+                                    <div class="w-10 h-10 rounded-full gradient-bg flex items-center justify-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-semibold text-gray-800">Email</h4>
+                                    <p class="mt-1 text-gray-600">agnese.marcuzzi@gmail.com</p>
+                                    <p class="mt-1 text-gray-600">yumitech@legalmail.it</p>
+                                    <p class="mt-1 text-gray-600">agnese.marcuzzi.gherardini@pec.it</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="flex-shrink-0">
+                                    <div class="w-10 h-10 rounded-full gradient-bg flex items-center justify-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="ml-4">
+                                    <h4 class="text-lg font-semibold text-gray-800">Indirizzo</h4>
+                                    <p class="mt-1 text-gray-600">Via pratosino a mezzana 3<br>59100 Prato, Italia</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-8 rounded-xl shadow-lg border border-gray-100">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-6">Seguici</h3>
+                        
+                        <div class="flex space-x-4">
+                            <a href="#" class="w-12 h-12 rounded-full gradient-bg flex items-center justify-center hover:opacity-90 transition-opacity">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z" />
+                                </svg>
+                            </a>
+                            <a href="https://www.instagram.com/fastintimeofficial?igsh=MTNucjhsOW95bmt4NA==" class="w-12 h-12 rounded-full gradient-bg flex items-center justify-center hover:opacity-90 transition-opacity">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                                </svg>
+                            </a>
+                            <a href="https://www.instagram.com/yumitech.srl?igsh=MWlxZ2Y2czhqMXdjYQ==" class="w-12 h-12 rounded-full gradient-bg flex items-center justify-center hover:opacity-90 transition-opacity">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                                </svg>
+                            </a>
+                            <a href="#" class="w-12 h-12 rounded-full gradient-bg flex items-center justify-center hover:opacity-90 transition-opacity">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+              <!-- Sponsors Section -->
+<section class="py-16 bg-white">
+    <div class="container mx-auto px-4 md:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-gray-800">I nostri sponsor</h2>
+            <p class="mt-4 text-lg text-gray-600">Chi crede nella nostra visione</p>
+        </div>
+        
+        <!-- Prima riga - 3 sponsor -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+            <!-- Sponsor 1 -->
+            <div class="flex items-center justify-center p-4 bg-gray-50 rounded-lg hover:shadow-md transition-shadow h-32">
+                <img src="/Users/francescomasini/Desktop/yumitech/sponsor 1.png" alt="Sponsor 1" class="h-20 w-auto object-contain">
+            </div>
+            
+            <!-- Sponsor 2 -->
+            <div class="flex items-center justify-center p-4 bg-gray-50 rounded-lg hover:shadow-md transition-shadow h-32">
+                <img src="/Users/francescomasini/Desktop/yumitech/sponsor 2.png" alt="Sponsor 2" class="h-20 w-auto object-contain">
+            </div>
+            
+            <!-- Sponsor 3 -->
+            <div class="flex items-center justify-center p-4 bg-gray-50 rounded-lg hover:shadow-md transition-shadow h-32">
+                <img src="/Users/francescomasini/Desktop/yumitech/sponsor 3.png" alt="Sponsor 3" class="h-20 w-auto object-contain">
+            </div>
+        </div>
+
+        <!-- Seconda riga - 4 sponsor -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <!-- Sponsor 4 -->
+            <div class="flex items-center justify-center p-4 bg-gray-50 rounded-lg hover:shadow-md transition-shadow h-32">
+                <img src="/Users/francescomasini/Desktop/yumitech/sponsor 4.png" alt="Sponsor 4" class="h-20 w-auto object-contain">
+            </div>
+            
+            <!-- Sponsor 5 -->
+            <div class="flex items-center justify-center p-4 bg-gray-50 rounded-lg hover:shadow-md transition-shadow h-32">
+                <img src="/Users/francescomasini/Desktop/yumitech/sponsor 5.png" alt="Sponsor 5" class="h-20 w-auto object-contain">
+            </div>
+            
+            <!-- Sponsor 6 -->
+            <div class="flex items-center justify-center p-4 bg-gray-50 rounded-lg hover:shadow-md transition-shadow h-32">
+                <img src="/Users/francescomasini/Desktop/yumitech/sponsor 6.png" alt="Sponsor 6" class="h-20 w-auto object-contain">
+            </div>
+            
+            <!-- Sponsor 7 -->
+            <div class="flex items-center justify-center p-4 bg-gray-50 rounded-lg hover:shadow-md transition-shadow h-32">
+                <img src="/Users/francescomasini/Desktop/yumitech/sponsor 7.png" alt="Sponsor 7" class="h-20 w-auto object-contain">
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Business Plan Modal -->
+<div id="businessPlanModal" class="modal fixed inset-0 z-50 flex items-center justify-center hidden">
+    <div class="modal-bg absolute inset-0 bg-black opacity-0 transition-opacity duration-300"></div>
+    <div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded-lg shadow-lg z-50 overflow-y-auto transform scale-95 transition-all duration-300">
+        <div class="modal-content py-6 px-8">
+            <div class="flex justify-between items-center pb-4 border-b">
+                <h3 class="text-2xl font-bold text-gray-800">Accesso Business Plan</h3>
+                <button onclick="closeBusinessPlanModal()" class="text-gray-600 hover:text-gray-800">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="py-6">
+                <form id="businessPlanForm" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                        <input type="password" id="businessPlanPassword" 
+                               class="w-full px-3 py-2 border border-gray-300 rounded-md" 
+                               placeholder="Inserisci la password" required>
+                        <p id="passwordError" class="text-red-500 text-sm mt-1 hidden">Password errata, riprova</p>
+                    </div>
+                    
+                    <button type="button" onclick="checkPassword()" class="w-full bg-purple text-white py-2 px-4 rounded-md hover:bg-purple-dark">
+                        Accedi
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Business Plan Content -->
+<div id="businessPlanContent" class="hidden fixed inset-0 bg-white z-50 overflow-y-auto p-8">
+    <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-gray-800 mb-4">Business Plan YumiTech</h1>
+            <div class="flex justify-center">
+                <button onclick="closeBusinessPlan()" class="flex items-center text-pear hover:text-pear-dark">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
+                    </svg>
+                    Torna al sito
+                </button>
+            </div>
+        </div>
+        
+        <!-- Inserisci qui il TUO business plan -->
+        <div class="space-y-8">
+            <section class="bg-gray-50 p-6 rounded-lg">
+                <h2 class="text-2xl font-bold mb-4 text-purple">1. Executive Summary</h2>
+                <p>Contenuto del tuo business plan...</p>
+            </section>
+            
+            <section class="bg-gray-50 p-6 rounded-lg">
+                <h2 class="text-2xl font-bold mb-4 text-purple">2. Analisi di Mercato</h2>
+                <p>Contenuto del tuo business plan...</p>
+            </section>
+            
+            <!-- Aggiungi altre sezioni qui -->
+        </div>
+    </div>
+</div>
+
+<div id="adminLoginModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+    <div class="bg-white rounded-lg shadow-xl w-full max-w-md mx-4 p-6">
+        <div class="flex justify-between items-center mb-4">
+            <h3 class="text-2xl font-bold text-gray-800">Accesso Admin</h3>
+            <button onclick="closeAdminLogin()" class="text-gray-500 hover:text-gray-700">
+                ✕
+            </button>
+        </div>
+        
+        <form id="adminLoginForm" onsubmit="event.preventDefault(); checkAdminLogin()">
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Username</label>
+                    <input type="text" id="adminUser" class="w-full px-3 py-2 border rounded-md" required>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                    <input type="password" id="adminPass" class="w-full px-3 py-2 border rounded-md" required>
+                </div>
+                
+                <button type="submit" class="w-full bg-purple text-white py-2 px-4 rounded-md hover:bg-purple-dark">
+                    Accedi
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Admin Panel (aggiungi prima di </body>) -->
+<div id="adminPanel" class="hidden fixed inset-0 z-50 bg-white p-6 overflow-auto">
+    <div class="max-w-4xl mx-auto">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-2xl font-bold">Pannello di Controllo</h2>
+            <button onclick="closeAdminPanel()" class="text-red-500 hover:text-red-700">Esci</button>
+        </div>
+
+        <!-- Editor Sezioni -->
+        <div class="space-y-6" id="sectionEditor"></div>
+        
+        <button onclick="saveAllEdits()" class="mt-6 bg-pear text-white px-6 py-2 rounded-md hover:bg-pear-dark">
+            Salva Tutte le Modifiche
+        </button>
+    </div>
+</div>
+
+<script>
+// Credenziali (modificabili dall'admin)
+let adminCredentials = {
+    username: "admin",
+    password: "nuova_password" // Cambia questa password
+};
+
+// Funzioni di Login
+function showAdminLogin() {
+    document.getElementById('adminLoginModal').classList.remove('hidden');
+}
+
+function closeAdminLogin() {
+    document.getElementById('adminLoginModal').classList.add('hidden');
+}
+
+function checkAdminLogin() {
+    const username = document.getElementById('adminUser').value;
+    const password = document.getElementById('adminPass').value;
+
+    if(username === adminCredentials.username && password === adminCredentials.password) {
+        closeAdminLogin();
+        showAdminPanel();
+    } else {
+        alert('Credenziali errate!');
+    }
+}
+
+// Funzioni Editor
+function showAdminPanel() {
+    document.getElementById('adminPanel').classList.remove('hidden');
+    loadEditableSections();
+}
+
+function closeAdminPanel() {
+    document.getElementById('adminPanel').classList.add('hidden');
+}
+
+function loadEditableSections() {
+    const sections = {
+        'heroTitle': {
+            selector: '#home h1', // Esempio: selettore CSS
+            type: 'textarea'
+        },
+        'heroText': {
+            selector: '#home p',
+            type: 'textarea'
+        },
+        'businessPlanContent': {
+            selector: '#business-plan-content',
+            type: 'richtext'
+        }
+    };
+
+    let editorHTML = '';
+    for(const [key, section] of Object.entries(sections)) {
+        const currentContent = document.querySelector(section.selector)?.innerHTML || '';
+        editorHTML += `
+            <div class="bg-gray-50 p-4 rounded-lg">
+                <h3 class="font-bold mb-2">${key}</h3>
+                ${section.type === 'textarea' ? 
+                    `<textarea id="edit_${key}" class="w-full p-2 border">${currentContent}</textarea>` :
+                    `<div id="edit_${key}" class="border p-2 min-h-[200px]" contenteditable>${currentContent}</div>`
+                }
+            </div>
+        `;
+    }
+    
+    document.getElementById('sectionEditor').innerHTML = editorHTML;
+}
+
+function saveAllEdits() {
+    const sections = ['heroTitle', 'heroText', 'businessPlanContent'];
+    
+    sections.forEach(section => {
+        const editor = document.getElementById(`edit_${section}`);
+        if(editor) {
+            localStorage.setItem(section, editor.value || editor.innerHTML);
+        }
+    });
+    
+    alert('Modifiche salvate! Ricarica la pagina per vedere i cambiamenti.');
+    closeAdminPanel();
+}
+
+// Carica i contenuti salvati al load
+window.addEventListener('DOMContentLoaded', () => {
+    const sections = ['heroTitle', 'heroText', 'businessPlanContent'];
+    sections.forEach(section => {
+        const savedContent = localStorage.getItem(section);
+        const element = document.querySelector(`[data-editable="${section}"]`);
+        if(savedContent && element) {
+            element.innerHTML = savedContent;
+        }
+    });
+});
+</script>
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="container mx-auto px-4 md:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <div class="flex items-center space-x-2 mb-6">
+                        <div class="w-10 h-10 rounded-full gradient-bg flex items-center justify-center">
+                            <span class="text-white font-bold text-xl">
+                                <img src="/Users/francescomasini/Desktop/yumitech/logo yumitech tondo.png" alt="Logo YumiTech"></span>
+                        </div>
+                        <span class="text-2xl font-bold text-pear">Yumitech</span></span>
+                    </div>
+                    <p lass="text-gray-400 mb-6">
+                        Dati reali in tempo reale. La tecnologia che sta rivoluzionando la connessione tra clienti e servizi.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-pear transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z" />
+                            </svg>
+                        </a>
+                        <a href="https://www.instagram.com/fastintimeofficial?igsh=MTNucjhsOW95bmt4NA==" class="text-gray-400 hover:text-pear transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                            </svg>
+                        </a>
+                        <a href="https://www.instagram.com/yumitech.srl?igsh=MWlxZ2Y2czhqMXdjYQ==" class="text-gray-400 hover:text-pear transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-pear transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Link rapidi</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#home" class="text-gray-400 hover:text-pear transition-colors">Home</a></li>
+                        <li><a href="#features" class="text-gray-400 hover:text-pear transition-colors">Caratteristiche</a></li>
+                        <li><a href="#app" class="text-gray-400 hover:text-pear transition-colors">App</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-pear transition-colors">Chi siamo</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-pear transition-colors">Contatti</a></li>
+                        <li><a href="#futuri-prodotti" class="text-gray-400 hover:text-pear transition-colors">Futuri prodotti</a></li>
+                        <li><a href="#impatto-ambientale" class="text-gray-400 hover:text-pear transition-colors">Impatto ambientale</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Servizi</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#features" class="text-gray-400 hover:text-pear transition-colors">Prenotazioni in tempo reale</a></li>
+                        <li><a href="#features" class="text-gray-400 hover:text-pear transition-colors">Gestione magazzino</a></li>
+                        <li><a href="#features" class="text-gray-400 hover:text-pear transition-colors">Analisi dati</a></li>
+                        <li><a href="#features" class="text-gray-400 hover:text-pear transition-colors">Soluzioni AI</a></li>
+                        <li><a href="#features" class="text-gray-400 hover:text-pear transition-colors">Abbonamenti</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-lg font-semibold mb-6">Contatti</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            <span class="text-gray-400">Via pratostino di Mezzana 3<br>59100 Prato, Italia</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                            </svg>
+                            <span class="text-gray-400">+39 3270747862</span>
+                        </li>
+
+
+                        <li class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-400 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                            <span class="text-gray-400">agnese.marcuzzi@gmail.com yumitech@legalmail.it agnese.marcuzzi.gherardini@pec.it</span>
+                        </li>
+                    <span class="text-gray-400">p.iva 02622550974</span>
+                </li>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 text-sm mb-4 md:mb-0">
+                        &copy; 2025 YumiTech. Tutti i diritti riservati.
+                    </p>
+                    <div class="flex space-x-6">
+                        <a href="/Users/francescomasini/Desktop/yumitech/privacy.html" class="text-gray-400 hover:text-pear transition-colors text-sm">Privacy Policy</a>
+                        <a href="/Users/francescomasini/Desktop/yumitech/termini.html" class="text-gray-400 hover:text-pear transition-colors text-sm">Termini di Servizio</a>
+                        <a href="/Users/francescomasini/Desktop/yumitech/cookie.html" class="text-gray-400 hover:text-pear transition-colors text-sm">Cookie Policy</a>
+                      </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal fixed inset-0 z-50 flex items-center justify-center hidden">
+        <div class="modal-bg absolute inset-0 bg-black opacity-0 transition-opacity duration-300"></div>
+        <div class="modal-container bg-white w-11/12 md:max-w-md mx-auto rounded-lg shadow-lg z-50 overflow-y-auto transform scale-95 transition-all duration-300">
+            <div class="modal-content py-6 px-8">
+                <div class="flex justify-between items-center pb-4 border-b">
+                    <h3 class="text-2xl font-bold text-gray-800">Area Riservata</h3>
+                    <button id="closeModal" class="text-gray-600 hover:text-gray-800">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="py-6">
+                    <div class="mb-6 text-center">
+                        <div class="w-16 h-16 rounded-full gradient-bg flex items-center justify-center mx-auto mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                            </svg>
+                        </div>
+                        <p class="text-gray-600 mb-2">Accedi all'area riservata</p>
+                        <p class="text-sm text-gray-500 mb-4">Questa è una demo. Qualsiasi password funzionerà.</p>
+                    </div>
+                    
+                    <form id="loginForm" class="space-y-6">
+                        <div>
+                            <label for="username" class="block text-sm font-medium text-gray-700 mb-1">Username</label>
+                            <input type="text" id="username" name="username" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pear focus:border-pear" placeholder="Inserisci il tuo username">
+                        </div>
+                        
+                        <div>
+                            <label for="demo-password" class="block text-sm font-medium text-gray-700 mb-1">Password (Demo)</label>
+                            <input type="password" id="demo-password" name="demo-password" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-pear focus:border-pear" placeholder="Inserisci la password demo">
+                        </div>
+                        
+                        <div>
+                            <button type="submit" class="w-full px-6 py-3 bg-pear text-white font-medium rounded-lg hover:bg-pear-dark transition-colors">
+                                Accedi
+                            </button>
+                        </div>
+                    </form>
+                    
+                    <div class="mt-4 text-center">
+                        <p class="text-sm text-gray-500">
+                            Questo è un modulo dimostrativo. <br>
+                            <strong>DEMO: Area Riservata</strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Private Area -->
+    <div id="privateArea" class="fixed inset-0 z-50 flex items-center justify-center hidden">
+        <!-- ... contenuto esistente ... -->
+    </div>
+
+    <!-- Business Plan Modal -->
+    <div id="businessPlanModal" class="fixed inset-0 z-50 flex items-center justify-center hidden bg-black bg-opacity-50">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-md mx-4">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-2xl font-bold text-gray-800">Accesso Business Plan</h3>
+                    <button onclick="closeBusinessPlanModal()" class="text-gray-500 hover:text-gray-700">
+                        ✕
+                    </button>
+                </div>
+                
+                <form onsubmit="checkPassword(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                        <input type="password" id="businessPlanPassword" 
+                               class="w-full px-3 py-2 border border-gray-300 rounded-md" 
+                               placeholder="Inserisci la password" required>
+                        <p id="passwordError" class="text-red-500 text-sm mt-1 hidden">Password errata, riprova</p>
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-purple text-white py-2 px-4 rounded-md hover:bg-purple-dark">
+                        Accedi
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Business Plan Content -->
+    <div id="businessPlanContent" class="hidden fixed inset-0 z-50 bg-white overflow-auto p-4 md:p-8">
+        <div class="max-w-4xl mx-auto">
+            <div class="flex justify-between items-center mb-6">
+                <h1 class="text-3xl font-bold">Business Plan YumiTech</h1>
+                <button onclick="closeBusinessPlan()" class="text-gray-500 hover:text-gray-700 text-2xl">
+                    ✕
+                </button>
+            </div>
+            
+            <div class="space-y-6">
+                <section class="bg-gray-50 p-6 rounded-lg">
+                    <h2 class="text-2xl font-bold mb-4">1. Executive Summary</h2>
+                    <p>Inserisci qui il contenuto del tuo business plan...</p>
+                </section>
+                
+                <section class="bg-gray-50 p-6 rounded-lg">
+                    <h2 class="text-2xl font-bold mb-4">2. Analisi di Mercato</h2>
+                    <p>Inserisci qui il contenuto del tuo business plan...</p>
+                </section>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Business Plan Functions
+        function showBusinessPlanModal() {
+            document.getElementById('businessPlanModal').classList.remove('hidden');
+        }
+    
+        function closeBusinessPlanModal() {
+            document.getElementById('businessPlanModal').classList.add('hidden');
+        }
+    function checkPassword() {
+        const password = document.getElementById('businessPlanPassword').value;
+        
+        if(password === '1234') { 
+            // Forza il refresh cache
+           window.location.href = '/Users/francescomasini/Desktop/yumitech/bp.html';
+        } else {
+            document.getElementById('passwordError').classList.remove('hidden');
+            setTimeout(() => {
+                document.getElementById('passwordError').classList.add('hidden');
+            }, 2000);
+        }
+    }
+</script>
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>YumiTech</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f9faf5;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: linear-gradient(135deg, #b6d94c, #8ca832);
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    footer {
+      background: #f3f4f6;
+      padding: 20px;
+      text-align: center;
+      font-size: 14px;
+      color: #555;
+    }
+
+    footer a {
+      color: #694cb6;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Banner Cookie Avanzato */
+    #advancedCookieBanner {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: white;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+      z-index: 9999;
+      padding: 20px;
+      display: none;
+      transition: transform 0.3s ease;
+    }
+
+    #advancedCookieBanner.show {
+      display: block;
+    }
+
+    #advancedCookieBanner .btn {
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-right: 10px;
+      border: none;
+    }
+
+    #advancedCookieBanner .accept {
+      background-color: #8ca832;
+      color: white;
+    }
+
+    #advancedCookieBanner .reject {
+      background-color: #e5e7eb;
+      color: #374151;
+    }
+
+    #advancedCookieBanner .settings {
+      background-color: #694cb6;
+      color: white;
+    }
+
+    #cookieSettingsPanel {
+      margin-top: 15px;
+      display: none;
+      font-size: 14px;
+      color: #4b5563;
+    }
+
+    #cookieSettingsPanel.show {
+      display: block;
+    }
+  </style>
+  <footer>
+    <a href="privacy.html">Privacy Policy</a> |
+    <a href="cookie.html">Cookie Policy</a> |
+    <a href="termini.html">Termini di Servizio</a>
+  </footer>
+
+  <!-- Banner Cookie Avanzato -->
+  <div id="advancedCookieBanner">
+    <p>
+      Utilizziamo cookie per migliorare la tua esperienza. Alcuni sono essenziali, altri ci aiutano a migliorare il sito.
+      <a href="cookie.html" target="_blank" style="color:#694cb6; text-decoration:underline;">Leggi la nostra Cookie Policy</a>.
+    </p>
+    <div style="margin-top: 10px;">
+      <button class="btn accept" onclick="acceptCookies()">Accetta tutti</button>
+      <button class="btn reject" onclick="rejectCookies()">Rifiuta</button>
+      <button class="btn settings" onclick="toggleSettings()">Personalizza</button>
+    </div>
+    <div id="cookieSettingsPanel">
+      <p><input type="checkbox" id="analyticsCookies"> Cookie analitici</p>
+      <p><input type="checkbox" id="marketingCookies"> Cookie di marketing</p>
+      <button onclick="savePreferences()" class="btn accept" style="margin-top:10px;">Salva preferenze</button>
+    </div>
+  </div>
+
+  <script>
+    function showBanner() {
+      if (!localStorage.getItem('cookieConsent')) {
+        document.getElementById('advancedCookieBanner').classList.add('show');
+      }
+    }
+
+    function acceptCookies() {
+      localStorage.setItem('cookieConsent', 'all');
+      document.getElementById('advancedCookieBanner').classList.remove('show');
+    }
+
+    function rejectCookies() {
+      localStorage.setItem('cookieConsent', 'essential');
+      document.getElementById('advancedCookieBanner').classList.remove('show');
+    }
+
+    function toggleSettings() {
+      const panel = document.getElementById('cookieSettingsPanel');
+      panel.classList.toggle('show');
+    }
+
+    function savePreferences() {
+      const analytics = document.getElementById('analyticsCookies').checked;
+      const marketing = document.getElementById('marketingCookies').checked;
+      const preferences = {
+        essential: true,
+        analytics: analytics,
+        marketing: marketing
+      };
+      localStorage.setItem('cookieConsent', JSON.stringify(preferences));
+      document.getElementById('advancedCookieBanner').classList.remove('show');
+    }
+
+    window.addEventListener('load', showBanner);
+  </script>
+</body>
+</html>
