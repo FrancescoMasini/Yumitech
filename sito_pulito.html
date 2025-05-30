@@ -76,6 +76,56 @@
     </style>
 </head>
 <body class="bg-gray-50">
+        <!-- CookieConsent GDPR + Google Analytics -->
+        <script>
+            window.addEventListener("load", function(){
+              window.cookieconsent.initialise({
+                palette: {
+                  popup: { background: "#000" },
+                  button: { background: "#f1d600" }
+                },
+                theme: "classic",
+                type: "opt-in",
+                content: {
+                    message: "Questo sito utilizza cookie tecnici e, previo consenso, cookie analitici di terze parti (Google Analytics) per migliorare la tua esperienza. Puoi scegliere quali cookie accettare.",
+                    dismiss: "Accetta tutti",
+                    allow: "Accetta",
+                    deny: "Rifiuta",
+                    link: "Cookie policy",
+                    href: "cookie.html"
+                },
+                onInitialise: function (status) {
+                  if (this.hasConsented('analytics')) { loadGA(); }
+                },
+                onStatusChange: function(status) {
+                  if (this.hasConsented('analytics')) { loadGA(); }
+                },
+                categories: {
+                  analytics: {
+                    needed: false,
+                    wanted: false,
+                    checked: false,
+                    label: "Cookie analitici"
+                  }
+                }
+              });
+        
+              function loadGA() {
+                // Carica Google Analytics solo dopo il consenso
+                if (!window.GA_LOADED) {
+                  window.GA_LOADED = true;
+                  var gaScript = document.createElement('script');
+                  gaScript.setAttribute('src','https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX'); // INSERISCI IL TUO ID
+                  gaScript.setAttribute('async','');
+                  document.head.appendChild(gaScript);
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                  gtag('config', 'G-XXXXXXXXXX'); // INSERISCI IL TUO ID
+                }
+              }
+            });
+            </script>
     <!-- Navbar -->
     <nav class="bg-white shadow-md fixed w-full z-50">
         <div class="container mx-auto px-4 md:px-6 lg:px-8">
@@ -469,7 +519,8 @@ Il suo valore distintivo risiede nella risoluzione dei problemi legati alla manc
                 </div>
             </div>
         </div>
-    </section><!-- Sezione Prodotti Futuri -->
+    </section>
+    <!-- Sezione Prodotti Futuri -->
     <section id="futuri-prodotti" class="bg-white py-20">
       <div class="container mx-auto px-4 md:px-6 lg:px-8 text-center">
         <h2 class="text-3xl md:text-4xl font-bold gradient-text mb-6">Prodotti Futuri</h2>
@@ -801,120 +852,6 @@ Il suo valore distintivo risiede nella risoluzione dei problemi legati alla manc
         </form>
     </div>
 </div>
-
-<!-- Admin Panel (aggiungi prima di </body>) -->
-<div id="adminPanel" class="hidden fixed inset-0 z-50 bg-white p-6 overflow-auto">
-    <div class="max-w-4xl mx-auto">
-        <div class="flex justify-between items-center mb-6">
-            <h2 class="text-2xl font-bold">Pannello di Controllo</h2>
-            <button onclick="closeAdminPanel()" class="text-red-500 hover:text-red-700">Esci</button>
-        </div>
-
-        <!-- Editor Sezioni -->
-        <div class="space-y-6" id="sectionEditor"></div>
-        
-        <button onclick="saveAllEdits()" class="mt-6 bg-pear text-white px-6 py-2 rounded-md hover:bg-pear-dark">
-            Salva Tutte le Modifiche
-        </button>
-    </div>
-</div>
-
-<script>
-// Credenziali (modificabili dall'admin)
-let adminCredentials = {
-    username: "admin",
-    password: "nuova_password" // Cambia questa password
-};
-
-// Funzioni di Login
-function showAdminLogin() {
-    document.getElementById('adminLoginModal').classList.remove('hidden');
-}
-
-function closeAdminLogin() {
-    document.getElementById('adminLoginModal').classList.add('hidden');
-}
-
-function checkAdminLogin() {
-    const username = document.getElementById('adminUser').value;
-    const password = document.getElementById('adminPass').value;
-
-    if(username === adminCredentials.username && password === adminCredentials.password) {
-        closeAdminLogin();
-        showAdminPanel();
-    } else {
-        alert('Credenziali errate!');
-    }
-}
-
-// Funzioni Editor
-function showAdminPanel() {
-    document.getElementById('adminPanel').classList.remove('hidden');
-    loadEditableSections();
-}
-
-function closeAdminPanel() {
-    document.getElementById('adminPanel').classList.add('hidden');
-}
-
-function loadEditableSections() {
-    const sections = {
-        'heroTitle': {
-            selector: '#home h1', // Esempio: selettore CSS
-            type: 'textarea'
-        },
-        'heroText': {
-            selector: '#home p',
-            type: 'textarea'
-        },
-        'businessPlanContent': {
-            selector: '#business-plan-content',
-            type: 'richtext'
-        }
-    };
-
-    let editorHTML = '';
-    for(const [key, section] of Object.entries(sections)) {
-        const currentContent = document.querySelector(section.selector)?.innerHTML || '';
-        editorHTML += `
-            <div class="bg-gray-50 p-4 rounded-lg">
-                <h3 class="font-bold mb-2">${key}</h3>
-                ${section.type === 'textarea' ? 
-                    `<textarea id="edit_${key}" class="w-full p-2 border">${currentContent}</textarea>` :
-                    `<div id="edit_${key}" class="border p-2 min-h-[200px]" contenteditable>${currentContent}</div>`
-                }
-            </div>
-        `;
-    }
-    
-    document.getElementById('sectionEditor').innerHTML = editorHTML;
-}
-
-function saveAllEdits() {
-    const sections = ['heroTitle', 'heroText', 'businessPlanContent'];
-    
-    sections.forEach(section => {
-        const editor = document.getElementById(`edit_${section}`);
-        if(editor) {
-            localStorage.setItem(section, editor.value || editor.innerHTML);
-        }
-    });
-    
-    alert('Modifiche salvate! Ricarica la pagina per vedere i cambiamenti.');
-    closeAdminPanel();
-}
-
-// Carica i contenuti salvati al load
-window.addEventListener('DOMContentLoaded', () => {
-    const sections = ['heroTitle', 'heroText', 'businessPlanContent'];
-    sections.forEach(section => {
-        const savedContent = localStorage.getItem(section);
-        const element = document.querySelector(`[data-editable="${section}"]`);
-        if(savedContent && element) {
-            element.innerHTML = savedContent;
-        }
-    });
-});
 </script>
     <!-- Footer -->
     <footer class="bg-gray-900 text-white pt-16 pb-8">
@@ -1076,12 +1013,6 @@ window.addEventListener('DOMContentLoaded', () => {
             </div>
         </div>
     </div>
-
-    <!-- Private Area -->
-    <div id="privateArea" class="fixed inset-0 z-50 flex items-center justify-center hidden">
-        <!-- ... contenuto esistente ... -->
-    </div>
-
     <!-- Business Plan Modal -->
     <div id="businessPlanModal" class="fixed inset-0 z-50 flex items-center justify-center hidden bg-black bg-opacity-50">
         <div class="bg-white rounded-lg shadow-xl w-full max-w-md mx-4">
@@ -1156,7 +1087,6 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     }
 </script>
-<!DOCTYPE html>
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
@@ -1254,60 +1184,5 @@ window.addEventListener('DOMContentLoaded', () => {
     <a href="cookie.html">Cookie Policy</a> |
     <a href="termini.html">Termini di Servizio</a>
   </footer>
-
-  <!-- Banner Cookie Avanzato -->
-  <div id="advancedCookieBanner">
-    <p>
-      Utilizziamo cookie per migliorare la tua esperienza. Alcuni sono essenziali, altri ci aiutano a migliorare il sito.
-      <a href="cookie.html" target="_blank" style="color:#694cb6; text-decoration:underline;">Leggi la nostra Cookie Policy</a>.
-    </p>
-    <div style="margin-top: 10px;">
-      <button class="btn accept" onclick="acceptCookies()">Accetta tutti</button>
-      <button class="btn reject" onclick="rejectCookies()">Rifiuta</button>
-      <button class="btn settings" onclick="toggleSettings()">Personalizza</button>
-    </div>
-    <div id="cookieSettingsPanel">
-      <p><input type="checkbox" id="analyticsCookies"> Cookie analitici</p>
-      <p><input type="checkbox" id="marketingCookies"> Cookie di marketing</p>
-      <button onclick="savePreferences()" class="btn accept" style="margin-top:10px;">Salva preferenze</button>
-    </div>
-  </div>
-
-  <script>
-    function showBanner() {
-      if (!localStorage.getItem('cookieConsent')) {
-        document.getElementById('advancedCookieBanner').classList.add('show');
-      }
-    }
-
-    function acceptCookies() {
-      localStorage.setItem('cookieConsent', 'all');
-      document.getElementById('advancedCookieBanner').classList.remove('show');
-    }
-
-    function rejectCookies() {
-      localStorage.setItem('cookieConsent', 'essential');
-      document.getElementById('advancedCookieBanner').classList.remove('show');
-    }
-
-    function toggleSettings() {
-      const panel = document.getElementById('cookieSettingsPanel');
-      panel.classList.toggle('show');
-    }
-
-    function savePreferences() {
-      const analytics = document.getElementById('analyticsCookies').checked;
-      const marketing = document.getElementById('marketingCookies').checked;
-      const preferences = {
-        essential: true,
-        analytics: analytics,
-        marketing: marketing
-      };
-      localStorage.setItem('cookieConsent', JSON.stringify(preferences));
-      document.getElementById('advancedCookieBanner').classList.remove('show');
-    }
-
-    window.addEventListener('load', showBanner);
-  </script>
 </body>
 </html>
